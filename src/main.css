@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0
+}
+
+.navigation {
+  background-color: #567;
+}
+
+.all-projects {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 1em;
+  padding-left: 1em;
+}
+
+.project-text {
+  font-size: 20px;
+  font-weight: bold;
+}

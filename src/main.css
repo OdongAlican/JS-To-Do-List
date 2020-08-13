@@ -45,3 +45,28 @@ body {
 .hide-module {
   display: none;
 }
+
+.project-button {
+  width: 29%;
+}
+
+.hide-all-project {
+  display: none;
+}
+
+.todo-project-button {
+  width: 8%;
+}
+
+.nameTxt {
+  color: #ffdf00;
+  font-size: 17.2px;
+  font-weight: bold;
+  padding-top: 1em;
+
+}
+
+.description-class {
+  width: 15%;
+  height: 35px;
+}

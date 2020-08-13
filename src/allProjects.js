@@ -1,3 +1,4 @@
+import toDoPage from './to-do'
 const projectList = JSON.parse(localStorage.getItem('project-library-data')) || [];
 
 const saveData = (arr) => {
@@ -27,6 +28,19 @@ const allProjects = () => {
       projectSection.appendChild(projectName)
       projectSection.appendChild(projectValue)
       allProjectsDiv.appendChild(projectSection)
+
+      const detailsProjectButton = document.createElement('button')
+      detailsProjectButton.innerHTML = 'View Details'
+      detailsProjectButton.setAttribute('class', 'btn btn-primary project-button')
+
+      projectSection.appendChild(detailsProjectButton)
+
+      detailsProjectButton.addEventListener('click', () => {
+        const toDoPageInstance = toDoPage()
+        toDoPageInstance.displayToDo(projectList[i].name, projectList[i].value )
+        document.querySelector('.all-projects').classList.add('hide-all-project')
+      })
+
     }
 
     document.querySelector('.all-content').appendChild(allProjectsDiv)

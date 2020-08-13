@@ -18,3 +18,26 @@ body {
   font-size: 20px;
   font-weight: bold;
 }
+
+.project-module {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-module button {
+  width: 100px;
+  height: 40px;
+}
+
+.project-module input {
+  width: 200px;
+  height: 40px;
+  outline: none;
+  border: none;
+}

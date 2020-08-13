@@ -1,18 +1,16 @@
-let projectList = [{
-  name: 'Project One',
-  value: '1'
-},
-{
-  name: 'Project Two',
-  value: '2'
-},
-{
-  name: 'Project Three',
-  value: '3'
-}
-]
+const projectList = JSON.parse(localStorage.getItem('project-library-data')) || [];
+
+const saveData = (arr) => {
+  localStorage.setItem('project-library-data', JSON.stringify(arr));
+};
+
+  function Projects(name, value){
+    this.name = name;
+    this.value = value;
+  }
 
 const allProjects = () => {
+
   const createFunction = () => {
     const allProjectsDiv = document.createElement('div')
     allProjectsDiv.setAttribute('class', 'all-projects mr-3')
@@ -36,22 +34,35 @@ const allProjects = () => {
 
   const addProject = () => {
     const projectCard = document.createElement('div')
-    projectCard.setAttribute('class', 'card')
+    projectCard.setAttribute('class', 'card project-module')
 
     const projectInput = document.createElement('input')
     projectInput.type = 'text'
     projectInput.setAttribute('placeholder', 'Add new project')
+    projectInput.setAttribute('id', 'addProject')
 
     const submitProjectButton = document.createElement('button')
     submitProjectButton.setAttribute('class', 'btn btn-success')
+    submitProjectButton.innerHTML = 'Submit'
+
+    submitProjectButton.addEventListener('click', addToProjectList)
 
     projectCard.appendChild(projectInput)
     projectCard.appendChild(submitProjectButton)
+    document.querySelector('.all-content').appendChild(projectCard)
+  }
 
+  const addToProjectList = () => {
+    let newProjectName = document.querySelector('#addProject').value
+    let lastElement = projectList.length
+    const projectInstance = new Projects(newProjectName, lastElement)
 
-    // const projectTitle = document.createElement('')
+    projectList.unshift(projectInstance)
 
-    console.log('random')
+    saveData(projectList)
+
+    localStorage['project-library-data'] = JSON.stringify(projectList);
+    createFunction()
   }
 
   return {addProject, createFunction}

@@ -37,7 +37,7 @@ const allProjects = () => {
 
       detailsProjectButton.addEventListener('click', () => {
         const toDoPageInstance = toDoPage()
-        toDoPageInstance.displayToDo(projectList[i].name )
+        toDoPageInstance.displayToDo(projectList[i].name, projectList[i].value )
         document.querySelector('.all-projects').classList.add('hide-all-project')
       })
 

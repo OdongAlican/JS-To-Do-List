@@ -1,12 +1,26 @@
+const toDoList = JSON.parse(localStorage.getItem('todo-library-data')) || [];
+
+const saveData = (arr) => {
+  localStorage.setItem('todo-library-data', JSON.stringify(arr));
+};
+
+function ToDoConstructor (title, description, duedate, priority, projectId) {
+  this.title = title
+  this.description = description
+  this.duedate = duedate
+  this.priority = priority
+  this.projectId = projectId
+}
+
   const toDoPage = () => {
-    const displayToDo = (value) => {
+    const displayToDo = (name, value) => {
       const toDoDiv = document.createElement('div')
       toDoDiv.setAttribute('class', 'main-todo-div')
 
       document.querySelector('.all-content').appendChild(toDoDiv)
 
       const projectTitle = document.createElement('h1')
-      projectTitle.innerHTML = value
+      projectTitle.innerHTML = name
 
       const addToDoButton = document.createElement('button')
       addToDoButton.innerHTML = 'Add ToDo'
@@ -15,10 +29,20 @@
       toDoDiv.appendChild(projectTitle)
       toDoDiv.appendChild(addToDoButton)
 
-      addToDoButton.addEventListener('click', displayToDoForm)
+      for (var i = 0; i < toDoList.length; i++) {
+         if (value == toDoList[i].projectId) {
+           const toDoParagraph = document.createElement('p')
+           toDoParagraph.innerHTML = toDoList[i].title
+           toDoDiv.appendChild(toDoParagraph)
+         }
+      }
+
+      addToDoButton.addEventListener('click', () => {
+        displayToDoForm(value)
+      })
     }
 
-    const displayToDoForm = () => {
+    const displayToDoForm = (id) => {
       const toDoForm = document.createElement('div')
       toDoForm.setAttribute('class', 'card project-module');
 
@@ -27,6 +51,7 @@
       toDoForm.appendChild(title);
       title.innerHTML = 'Title';
       const titleInput = document.createElement('input');
+      titleInput.setAttribute('id', 'title-id')
       titleInput.type = 'text';
 
       toDoForm.appendChild(titleInput)
@@ -37,6 +62,7 @@
       toDoForm.appendChild(description)
       const descriptionInput = document.createElement('input');
       descriptionInput.setAttribute('class','description-class');
+      descriptionInput.setAttribute('id', 'description-id')
       descriptionInput.type = 'text';
       toDoForm.appendChild(descriptionInput);
 
@@ -45,6 +71,7 @@
       dueDate.innerHTML = 'Due Date'
       const dueDateInput = document.createElement('input');
       dueDateInput.setAttribute('class','description-class');
+      dueDateInput.setAttribute('id', 'dueDate-id')
       dueDateInput.type = 'date'
       toDoForm.appendChild(dueDate);
       toDoForm.appendChild(dueDateInput);
@@ -57,13 +84,17 @@
 
       const priority = document.createElement('select');
       priority.setAttribute('class','description-class');
+      priority.setAttribute('id','priority-id');
       const priorityOptions = document.createElement('option');
+      priorityOptions.setAttribute('value', '1')
       priority.appendChild(priorityOptions)
       priorityOptions.innerHTML = 'High'
       const priorityOptionTwo = document.createElement('option');
+      priorityOptionTwo.setAttribute('value', '2')
       priority.appendChild(priorityOptionTwo)
       priorityOptionTwo.innerHTML = 'Medium'
       const priorityOptionThree = document.createElement('option');
+      priorityOptionThree.setAttribute('value', '3')
       priority.appendChild(priorityOptionThree)
       priorityOptionThree.innerHTML = 'Low'
 
@@ -75,9 +106,29 @@
 
       toDoForm.appendChild(submitToDoButton)
 
+      submitToDoButton.addEventListener('click', () => {
+        createToDoList(id)
+      })
+
 
       document.querySelector('.all-content').appendChild(toDoForm)
 
+    }
+
+    const createToDoList = (id) => {
+
+      const toDoTitle = document.getElementById('title-id').value
+      const toDoDescription = document.getElementById('description-id').value
+      const toDoDueDate = document.getElementById('dueDate-id').value
+      const toDoPriority = document.getElementById('priority-id')
+
+      const userPriority = toDoPriority.options[toDoPriority.selectedIndex].text;
+
+      const toDoConstructorInstance = new ToDoConstructor(toDoTitle, toDoDescription, toDoDueDate, userPriority, id )
+
+      toDoList.push(toDoConstructorInstance)
+      saveData(toDoList)
+      localStorage['todo-library-data'] = JSON.stringify(toDoList);
     }
 
     return {displayToDo, displayToDoForm}

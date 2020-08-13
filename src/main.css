@@ -9,7 +9,7 @@ body {
 
 .all-projects {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 1em;
   padding-left: 1em;
 }
@@ -40,4 +40,8 @@ body {
   height: 40px;
   outline: none;
   border: none;
+}
+
+.hide-module {
+  display: none;
 }

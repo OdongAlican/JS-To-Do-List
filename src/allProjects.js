@@ -49,19 +49,21 @@ const allProjects = () => {
 
     projectCard.appendChild(projectInput)
     projectCard.appendChild(submitProjectButton)
-    document.querySelector('.all-content').appendChild(projectCard)
+    // document.querySelector('.all-content').appendChild(projectCard)
+    document.body.appendChild(projectCard)
   }
 
   const addToProjectList = () => {
     let newProjectName = document.querySelector('#addProject').value
-    let lastElement = projectList.length
+    let lastElement = projectList.length + 1
+    console.log(projectList)
     const projectInstance = new Projects(newProjectName, lastElement)
 
-    projectList.unshift(projectInstance)
+    projectList.push(projectInstance)
 
     saveData(projectList)
-
     localStorage['project-library-data'] = JSON.stringify(projectList);
+    window.location.reload()
     createFunction()
   }
 

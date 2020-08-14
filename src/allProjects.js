@@ -37,8 +37,8 @@ const allProjects = () => {
       projectSection.appendChild(detailsProjectButton)
 
       detailsProjectButton.addEventListener('click', () => {
-        const toDoPageInstance = toDoPage()
-        toDoPageInstance.displayToDo(projectList[i].name, projectList[i].value)
+        const toDoPageInstance = toDoPage(projectList[i].name, projectList[i].value)
+        toDoPageInstance.displayToDo()
         document.querySelector('.all-projects').classList.add('hide-all-project')
       })
 

@@ -101,4 +101,5 @@ body {
 .fas {
   color: white;
   padding: 5px;
+  cursor: pointer;
 }

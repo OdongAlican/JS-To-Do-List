@@ -15,8 +15,8 @@ function ToDoConstructor(title, description, duedate, priority, projectId) {
   this.projectId = projectId;
 }
 
-const toDoPage = () => {
-  const displayToDo = (name, value) => {
+const toDoPage = (name, value) => {
+  const displayToDo = () => {
     const toDoDiv = document.createElement('div');
     toDoDiv.setAttribute('class', 'main-todo-div');
 
@@ -200,7 +200,7 @@ const toDoPage = () => {
     const allContent = document.querySelector('.all-content');
     allContent.innerHTML = '';
     navBar();
-    allContent.appendChild(displayToDo(name, value));
+    allContent.appendChild(displayToDo());
 
   };
 

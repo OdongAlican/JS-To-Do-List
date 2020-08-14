@@ -164,13 +164,18 @@ const toDoPage = (name, value) => {
     document.querySelector('.all-content').appendChild(toDoForm);
 
     submitToDoButton.addEventListener('click', () => {
-      if (toDoList[name] != -1) {
+      if (toDoList.indexOf(toDoList[name]) != -1) {
         const newtoDoTitle = document.getElementById('title-id').value;
         const newtoDoDescription = document.getElementById('description-id').value;
         const newtoDoDueDate = document.getElementById('dueDate-id').value;
+        const newtoDoPriority = document.getElementById('priority-id');
+    
+        const newUserPriority = newtoDoPriority.options[newtoDoPriority.selectedIndex].text;
+
         toDoList[name].title = newtoDoTitle
         toDoList[name].description = newtoDoDescription
         toDoList[name].duedate = newtoDoDueDate
+        toDoList[name].priority = newUserPriority
 
         saveData(toDoList);
 

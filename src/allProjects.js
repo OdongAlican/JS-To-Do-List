@@ -1,5 +1,4 @@
 import toDoPage from './to-do'
-import navBar from './navbar'
 const projectList = JSON.parse(localStorage.getItem('project-library-data')) || [];
 
 const saveData = (arr) => {

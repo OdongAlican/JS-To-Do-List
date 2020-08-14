@@ -1,4 +1,3 @@
-import allProjects from './allProjects';
 import navBar from './navbar';
 
 const toDoList = JSON.parse(localStorage.getItem('todo-library-data')) || [];
@@ -37,8 +36,8 @@ const toDoPage = (name, value) => {
 
     toDoDiv.appendChild(toDoSectionMainDiv);
 
-    for (var i = 0; i < toDoList.length; i++) {
-      if (value == toDoList[i].projectId) {
+    for (let i = 0; i < toDoList.length; i += 1) {
+      if (value === toDoList[i].projectId) {
         const todoSection = document.createElement('div');
         todoSection.setAttribute('class', 'todo-section  ');
         const toDoParagraph = document.createElement('p');
@@ -49,38 +48,38 @@ const toDoPage = (name, value) => {
         todoSection.appendChild(toDoParagraph);
         todoSection.appendChild(toDoDate);
 
-        if (toDoList[i].priority == 'High') {
+        if (toDoList[i].priority === 'High') {
           const toDoSectionPrority = document.createElement('p');
           toDoSectionPrority.setAttribute('class', 'high-priority');
           toDoSectionPrority.innerHTML = toDoList[i].priority;
           todoSection.appendChild(toDoSectionPrority);
-        } else if (toDoList[i].priority == 'Medium') {
+        } else if (toDoList[i].priority === 'Medium') {
           const toDoSectionPrority = document.createElement('p');
           toDoSectionPrority.setAttribute('class', 'medium-priority');
           toDoSectionPrority.innerHTML = toDoList[i].priority;
           todoSection.appendChild(toDoSectionPrority);
-        } else if (toDoList[i].priority == 'Low') {
+        } else if (toDoList[i].priority === 'Low') {
           const toDoSectionPrority = document.createElement('p');
           toDoSectionPrority.setAttribute('class', 'low-priority');
           toDoSectionPrority.innerHTML = toDoList[i].priority;
           todoSection.appendChild(toDoSectionPrority);
         }
 
-        const toDoObject = toDoList[i]
+        const toDoObject = toDoList[i];
 
         const editIcon = document.createElement('i');
         editIcon.setAttribute('class', 'fas fa-edit');
 
         editIcon.addEventListener('click', () => {
-          editToDo(toDoList.indexOf(toDoObject))
-        })
+          editToDo(toDoList.indexOf(toDoObject));
+        });
 
         const deleteIcon = document.createElement('i');
         deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
         deleteIcon.addEventListener('click', () => {
-          deleteToDo(toDoList.indexOf(toDoObject))
-        })
+          deleteToDo(toDoList.indexOf(toDoObject));
+        });
 
         todoSection.appendChild(editIcon);
         todoSection.appendChild(deleteIcon);
@@ -164,18 +163,18 @@ const toDoPage = (name, value) => {
     document.querySelector('.all-content').appendChild(toDoForm);
 
     submitToDoButton.addEventListener('click', () => {
-      if (toDoList.indexOf(toDoList[name]) != -1) {
+      if (toDoList.indexOf(toDoList[name]) !== -1) {
         const newtoDoTitle = document.getElementById('title-id').value;
         const newtoDoDescription = document.getElementById('description-id').value;
         const newtoDoDueDate = document.getElementById('dueDate-id').value;
         const newtoDoPriority = document.getElementById('priority-id');
-    
+
         const newUserPriority = newtoDoPriority.options[newtoDoPriority.selectedIndex].text;
 
-        toDoList[name].title = newtoDoTitle
-        toDoList[name].description = newtoDoDescription
-        toDoList[name].duedate = newtoDoDueDate
-        toDoList[name].priority = newUserPriority
+        toDoList[name].title = newtoDoTitle;
+        toDoList[name].description = newtoDoDescription;
+        toDoList[name].duedate = newtoDoDueDate;
+        toDoList[name].priority = newUserPriority;
 
         saveData(toDoList);
 
@@ -185,9 +184,7 @@ const toDoPage = (name, value) => {
         allContent.innerHTML = '';
         navBar();
         allContent.appendChild(displayToDo(name, value));
-      }
-
-      else {
+      } else {
         document.getElementById('todoDoForm').classList.add('hide-toDo-form-first');
         document.querySelector('.main-todo-div').classList.add('hide-toDo-form-first');
         createToDoList(name, value);
@@ -219,23 +216,21 @@ const toDoPage = (name, value) => {
   };
 
   const editToDo = (x) => {
-    displayToDoForm(x)
+    displayToDoForm(x);
 
-    document.getElementById('title-id').value = toDoList[x].title
-    document.getElementById('description-id').value = toDoList[x].description
-    document.getElementById('dueDate-id').value = toDoList[x].duedate
-
+    document.getElementById('title-id').value = toDoList[x].title;
+    document.getElementById('description-id').value = toDoList[x].description;
+    document.getElementById('dueDate-id').value = toDoList[x].duedate;
   };
 
   const deleteToDo = (identity) => {
-    toDoList.splice(identity, 1)
-    localStorage['todo-library-data'] = JSON.stringify(toDoList)
+    toDoList.splice(identity, 1);
+    localStorage['todo-library-data'] = JSON.stringify(toDoList);
 
     const allContent = document.querySelector('.all-content');
     allContent.innerHTML = '';
     navBar();
     allContent.appendChild(displayToDo());
-
   };
 
   return { displayToDo, displayToDoForm };

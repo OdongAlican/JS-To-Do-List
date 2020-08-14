@@ -1,7 +1,6 @@
 import './main.css';
 import navBar from './navbar'
 import allProjects from './allProjects'
-import toDoPage from './to-do'
 
 const displayPages = () => {
 

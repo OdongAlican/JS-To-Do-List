@@ -66,15 +66,20 @@ const toDoPage = (name, value) => {
           todoSection.appendChild(toDoSectionPrority);
         }
 
+        const toDoObject = toDoList[i]
+
         const editIcon = document.createElement('i');
         editIcon.setAttribute('class', 'fas fa-edit');
+
+        editIcon.addEventListener('click', () => {
+          editToDo(toDoList.indexOf(toDoObject))
+        })
 
         const deleteIcon = document.createElement('i');
         deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
-        const testValue = toDoList[i]
         deleteIcon.addEventListener('click', () => {
-          deleteToDo(toDoList.indexOf(testValue))
+          deleteToDo(toDoList.indexOf(toDoObject))
         })
 
         todoSection.appendChild(editIcon);
@@ -159,9 +164,29 @@ const toDoPage = (name, value) => {
     document.querySelector('.all-content').appendChild(toDoForm);
 
     submitToDoButton.addEventListener('click', () => {
-      document.getElementById('todoDoForm').classList.add('hide-toDo-form-first');
-      document.querySelector('.main-todo-div').classList.add('hide-toDo-form-first');
-      createToDoList(name, value);
+      if (toDoList[name] != -1) {
+        const newtoDoTitle = document.getElementById('title-id').value;
+        const newtoDoDescription = document.getElementById('description-id').value;
+        const newtoDoDueDate = document.getElementById('dueDate-id').value;
+        toDoList[name].title = newtoDoTitle
+        toDoList[name].description = newtoDoDescription
+        toDoList[name].duedate = newtoDoDueDate
+
+        saveData(toDoList);
+
+        localStorage['todo-library-data'] = JSON.stringify(toDoList);
+
+        const allContent = document.querySelector('.all-content');
+        allContent.innerHTML = '';
+        navBar();
+        allContent.appendChild(displayToDo(name, value));
+      }
+
+      else {
+        document.getElementById('todoDoForm').classList.add('hide-toDo-form-first');
+        document.querySelector('.main-todo-div').classList.add('hide-toDo-form-first');
+        createToDoList(name, value);
+      }
     });
   };
 
@@ -188,8 +213,12 @@ const toDoPage = (name, value) => {
     allContent.appendChild(displayToDo(name, value));
   };
 
-  const editToDo = () => {
+  const editToDo = (x) => {
+    displayToDoForm(x)
 
+    document.getElementById('title-id').value = toDoList[x].title
+    document.getElementById('description-id').value = toDoList[x].description
+    document.getElementById('dueDate-id').value = toDoList[x].duedate
 
   };
 

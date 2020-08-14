@@ -1,3 +1,6 @@
+import allProjects from './allProjects'
+import navBar from './navbar'
+
 const toDoList = JSON.parse(localStorage.getItem('todo-library-data')) || [];
 
 const saveData = (arr) => {
@@ -13,6 +16,7 @@ function ToDoConstructor (title, description, duedate, priority, projectId) {
 }
 
   const toDoPage = () => {
+
     const displayToDo = (name, value) => {
       const toDoDiv = document.createElement('div')
       toDoDiv.setAttribute('class', 'main-todo-div')
@@ -38,14 +42,14 @@ function ToDoConstructor (title, description, duedate, priority, projectId) {
       }
 
       addToDoButton.addEventListener('click', () => {
-        displayToDoForm(value)
+        displayToDoForm(name, value)
       })
     }
 
-    const displayToDoForm = (id) => {
+    const displayToDoForm = (name, value) => {
       const toDoForm = document.createElement('div')
       toDoForm.setAttribute('class', 'card project-module');
-
+      toDoForm.setAttribute('id', 'todoDoForm')
       const title = document.createElement('label');
       title.setAttribute('class', 'nameTxt');
       toDoForm.appendChild(title);
@@ -101,22 +105,23 @@ function ToDoConstructor (title, description, duedate, priority, projectId) {
       toDoForm.appendChild(priority)
 
       const submitToDoButton = document.createElement('button')
-      submitToDoButton.setAttribute('class', 'btn btn-success todo-project-button mt-2')
+      submitToDoButton.setAttribute('class', 'btn btn-success todo-project-button hide-submit-button mt-2')
       submitToDoButton.innerHTML = 'Submit'
 
       toDoForm.appendChild(submitToDoButton)
 
-      submitToDoButton.addEventListener('click', () => {
-        createToDoList(id)
-      })
-
-
       document.querySelector('.all-content').appendChild(toDoForm)
+
+      submitToDoButton.addEventListener('click', () => {
+        document.getElementById('todoDoForm').classList.add('hide-toDo-form-first')
+        document.querySelector('.main-todo-div').classList.add('hide-toDo-form-first')
+        createToDoList(name, value)
+      })
 
     }
 
-    const createToDoList = (id) => {
 
+    const createToDoList = (name, value) => {
       const toDoTitle = document.getElementById('title-id').value
       const toDoDescription = document.getElementById('description-id').value
       const toDoDueDate = document.getElementById('dueDate-id').value
@@ -124,11 +129,18 @@ function ToDoConstructor (title, description, duedate, priority, projectId) {
 
       const userPriority = toDoPriority.options[toDoPriority.selectedIndex].text;
 
-      const toDoConstructorInstance = new ToDoConstructor(toDoTitle, toDoDescription, toDoDueDate, userPriority, id )
+      const toDoConstructorInstance = new ToDoConstructor(toDoTitle, toDoDescription, toDoDueDate, userPriority, value )
 
       toDoList.push(toDoConstructorInstance)
+
       saveData(toDoList)
+
       localStorage['todo-library-data'] = JSON.stringify(toDoList);
+      
+      let allContent = document.querySelector('.all-content')
+      allContent.innerHTML = ''
+      navBar()
+      allContent.appendChild(displayToDo(name, value))
     }
 
     return {displayToDo, displayToDoForm}

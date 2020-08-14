@@ -50,7 +50,10 @@ body {
   width: 29%;
 }
 
-.hide-all-project {
+.hide-all-project,
+.hide-toDo-form,
+.hide-toDo-form-first,
+.hide-toDo-form-first{
   display: none;
 }
 

@@ -1,4 +1,5 @@
 import toDoPage from './to-do'
+import navBar from './navbar'
 const projectList = JSON.parse(localStorage.getItem('project-library-data')) || [];
 
 const saveData = (arr) => {
@@ -37,7 +38,7 @@ const allProjects = () => {
 
       detailsProjectButton.addEventListener('click', () => {
         const toDoPageInstance = toDoPage()
-        toDoPageInstance.displayToDo(projectList[i].name, projectList[i].value )
+        toDoPageInstance.displayToDo(projectList[i].name, projectList[i].value)
         document.querySelector('.all-projects').classList.add('hide-all-project')
       })
 
@@ -63,7 +64,6 @@ const allProjects = () => {
 
     projectCard.appendChild(projectInput)
     projectCard.appendChild(submitProjectButton)
-    // document.querySelector('.all-content').appendChild(projectCard)
     document.body.appendChild(projectCard)
   }
 

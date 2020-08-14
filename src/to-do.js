@@ -72,9 +72,9 @@ const toDoPage = () => {
         const deleteIcon = document.createElement('i');
         deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
-
+        const testValue = toDoList[i]
         deleteIcon.addEventListener('click', () => {
-            console.log(toDoList[1])
+          deleteToDo(toDoList.indexOf(testValue))
         })
 
         todoSection.appendChild(editIcon);
@@ -193,7 +193,15 @@ const toDoPage = () => {
 
   };
 
-  const deleteToDo = (i) => {
+  const deleteToDo = (identity) => {
+    toDoList.splice(identity, 1)
+    localStorage['todo-library-data'] = JSON.stringify(toDoList)
+
+    const allContent = document.querySelector('.all-content');
+    allContent.innerHTML = '';
+    navBar();
+    allContent.appendChild(displayToDo(name, value));
+
   };
 
   return { displayToDo, displayToDoForm };

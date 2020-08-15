@@ -233,10 +233,12 @@ const toDoPage = (name, value) => {
 
         const newUserPriority = newtoDoPriority.options[newtoDoPriority.selectedIndex].text;
 
-        toDoList[name].title = newtoDoTitle;
-        toDoList[name].description = newtoDoDescription;
-        toDoList[name].duedate = newtoDoDueDate;
-        toDoList[name].priority = newUserPriority;
+        if (newtoDoTitle && newtoDoDescription && newtoDoDueDate) {
+          toDoList[name].title = newtoDoTitle;
+          toDoList[name].description = newtoDoDescription;
+          toDoList[name].duedate = newtoDoDueDate;
+          toDoList[name].priority = newUserPriority;
+        }
 
         saveData(toDoList);
 
@@ -265,11 +267,13 @@ const toDoPage = (name, value) => {
     const userPriority = toDoPriority.options[toDoPriority.selectedIndex].text;
     const userStatus = toDoStatus.options[toDoStatus.selectedIndex].text;
 
-    const toDoConstructorInstance = new ToDoConstructor(toDoTitle, toDoDescription, toDoDueDate, userPriority, value, userStatus);
-
-    toDoList.push(toDoConstructorInstance);
+    if (toDoTitle && toDoDescription && toDoDueDate) {
+      const toDoConstructorInstance = new ToDoConstructor(toDoTitle, toDoDescription, toDoDueDate, userPriority, value, userStatus);
+      toDoList.push(toDoConstructorInstance);
+    }
 
     saveData(toDoList);
+
 
     localStorage['todo-library-data'] = JSON.stringify(toDoList);
 

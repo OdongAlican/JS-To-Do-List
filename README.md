@@ -11,7 +11,7 @@ Learning the concepts of Single Responsibility and Tightly Coupled Objects in Ja
 
 ## Live demo Link
 
-[live link](https://raw.githack.com/OdongAlican/Library/feature-node-modules/index.html)
+[live link](https://rawcdn.githack.com/OdongAlican/JS-To-Do-List/3a86b65dc66bbd7be54e098d4dd2f6db1ce57300/dist/index.html)
 
 ![Landing page](1.png)
 ![To-Do page](2.png)

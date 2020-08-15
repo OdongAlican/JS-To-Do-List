@@ -15,7 +15,8 @@
       "eol-last": "off",
       "arrow-parens": "off",
       "max-len": "off",
-      "no-use-before-define": "off"
+      "no-use-before-define": "off",
+      "import/no-cycle": "off"
 
     },
     "ignorePatterns": [

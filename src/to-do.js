@@ -81,6 +81,37 @@ const toDoPage = (name, value) => {
         statusButton.setAttribute('class', 'btn btn-info');
         todoSection.appendChild(statusButton)
 
+        statusButton.addEventListener('click', ()=>{
+          if(toDoList[i].status === 'Complete'){
+            toDoList[i].status = 'Pending'
+
+
+
+          saveData(toDoList);
+
+          localStorage['todo-library-data'] = JSON.stringify(toDoList);
+
+          const allContent = document.querySelector('.all-content');
+          allContent.innerHTML = '';
+          navBar();
+          allContent.appendChild(displayToDo(name, value));
+
+
+          }else if(toDoList[i].status === 'Pending'){
+            toDoList[i].status = 'Complete'
+
+          saveData(toDoList);
+
+          localStorage['todo-library-data'] = JSON.stringify(toDoList);
+
+          const allContent = document.querySelector('.all-content');
+          allContent.innerHTML = '';
+          navBar();
+          allContent.appendChild(displayToDo(name, value));
+
+          }
+        })
+
         const toDoObject = toDoList[i];
 
         const editIcon = document.createElement('i');
@@ -164,7 +195,7 @@ const toDoPage = (name, value) => {
     statusComplete.setAttribute('value', '1');
 
     optionStatus.appendChild(statusComplete);
-    statusComplete.innerHTML = 'complete';
+    statusComplete.innerHTML = 'Complete';
     const statusPending = document.createElement('option');
     statusPending.setAttribute('value', '2');
     optionStatus.appendChild(statusPending);

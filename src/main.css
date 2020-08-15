@@ -82,7 +82,7 @@ body {
   display: grid;
   grid-gap: 1em;
   padding: 15px;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .todo-section {
@@ -112,7 +112,7 @@ body {
 }
 
 .fa-edit {
-  margin-left: 15em;
+  margin-left: 13em;
 }
 
 .p-title {

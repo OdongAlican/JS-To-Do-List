@@ -73,44 +73,37 @@ const toDoPage = (name, value) => {
           todoSection.appendChild(toDoSectionPrority);
         }
 
-        const statusParagraph = document.createElement('p')
-
-
-        const statusButton = document.createElement('button')
-        statusButton.innerHTML = 'Change Status'
+        const statusButton = document.createElement('button');
+        statusButton.innerHTML = 'Change Status';
         statusButton.setAttribute('class', 'btn btn-info');
-        todoSection.appendChild(statusButton)
+        todoSection.appendChild(statusButton);
 
-        statusButton.addEventListener('click', ()=>{
-          if(toDoList[i].status === 'Complete'){
-            toDoList[i].status = 'Pending'
-
-
-
-          saveData(toDoList);
-
-          localStorage['todo-library-data'] = JSON.stringify(toDoList);
-
-          const allContent = document.querySelector('.all-content');
-          allContent.innerHTML = '';
-          navBar();
-          allContent.appendChild(displayToDo(name, value));
+        statusButton.addEventListener('click', () => {
+          if (toDoList[i].status === 'Complete') {
+            toDoList[i].status = 'Pending';
 
 
-          }else if(toDoList[i].status === 'Pending'){
-            toDoList[i].status = 'Complete'
+            saveData(toDoList);
 
-          saveData(toDoList);
+            localStorage['todo-library-data'] = JSON.stringify(toDoList);
 
-          localStorage['todo-library-data'] = JSON.stringify(toDoList);
+            const allContent = document.querySelector('.all-content');
+            allContent.innerHTML = '';
+            navBar();
+            allContent.appendChild(displayToDo(name, value));
+          } else if (toDoList[i].status === 'Pending') {
+            toDoList[i].status = 'Complete';
 
-          const allContent = document.querySelector('.all-content');
-          allContent.innerHTML = '';
-          navBar();
-          allContent.appendChild(displayToDo(name, value));
+            saveData(toDoList);
 
+            localStorage['todo-library-data'] = JSON.stringify(toDoList);
+
+            const allContent = document.querySelector('.all-content');
+            allContent.innerHTML = '';
+            navBar();
+            allContent.appendChild(displayToDo(name, value));
           }
-        })
+        });
 
         const toDoObject = toDoList[i];
 

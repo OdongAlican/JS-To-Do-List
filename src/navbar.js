@@ -5,7 +5,7 @@ const navBar = () => {
   navDiv.setAttribute('class', 'navigation border d-flex p-3');
 
   const viewProjectButton = document.createElement('button');
-  viewProjectButton.innerHTML = 'All Projects'
+  viewProjectButton.innerHTML = 'All Projects';
   navDiv.appendChild(viewProjectButton);
   viewProjectButton.setAttribute('class', 'navigation-button btn btn-info');
 
@@ -23,7 +23,7 @@ const navBar = () => {
   });
 
   viewProjectButton.addEventListener('click', () => {
-    window.location.reload()
+    window.location.reload();
   });
 
 

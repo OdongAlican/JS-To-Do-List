@@ -41,8 +41,10 @@ const toDoPage = (name, value) => {
         const todoSection = document.createElement('div');
         todoSection.setAttribute('class', 'todo-section  ');
         const toDoParagraph = document.createElement('p');
+        toDoParagraph.setAttribute('class', 'p-title');
         toDoParagraph.innerHTML = toDoList[i].title;
         const toDoDate = document.createElement('p');
+        toDoDate.setAttribute('class', 'p-date');
         toDoDate.innerHTML = toDoList[i].duedate;
 
         todoSection.appendChild(toDoParagraph);

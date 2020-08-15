@@ -59,6 +59,7 @@ body {
 
 .todo-project-button {
   width: 8%;
+  margin-left: 1em;
 }
 
 .nameTxt {
@@ -67,6 +68,11 @@ body {
   font-weight: bold;
   padding-top: 1em;
 
+}
+
+.main-todo-div h1 {
+  margin-top: 10px;
+  margin-left: 0.5em;
 }
 
 .description-class {
@@ -82,24 +88,38 @@ body {
 }
 
 .todo-section {
-  background-color: #789;
+  background-color: #6C6C6C;
   padding: 10px;
 }
 
 .high-priority {
   color: red;
+  font-weight: bold;
 }
 
 .medium-priority {
   color: yellow;
+  font-weight: bold;
 }
 
 .low-priority {
-  color: green;
+  color: 	#7FFF00;
+  font-weight: bold;
 }
 
 .fas {
   color: white;
   padding: 5px;
   cursor: pointer;
+}
+
+.p-title {
+  color: white;
+  font-weight: bold;
+   text-transform: capitalize;
+   font-size: 18px;
+}
+
+.p-date {
+  color: #D4C8A8;
 }

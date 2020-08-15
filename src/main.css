@@ -111,6 +111,10 @@ body {
   cursor: pointer;
 }
 
+.fa-edit {
+  margin-left: 15em;
+}
+
 .p-title {
   color: white;
   font-weight: bold;

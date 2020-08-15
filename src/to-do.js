@@ -6,12 +6,13 @@ const saveData = (arr) => {
   localStorage.setItem('todo-library-data', JSON.stringify(arr));
 };
 
-function ToDoConstructor(title, description, duedate, priority, projectId) {
+function ToDoConstructor(title, description, duedate, priority, projectId, status) {
   this.title = title;
   this.description = description;
   this.duedate = duedate;
   this.priority = priority;
   this.projectId = projectId;
+  this.status = status;
 }
 
 const toDoPage = (name, value) => {
@@ -47,8 +48,13 @@ const toDoPage = (name, value) => {
         toDoDate.setAttribute('class', 'p-date');
         toDoDate.innerHTML = toDoList[i].duedate;
 
+        const toDoStatus = document.createElement('p');
+        toDoStatus.setAttribute('class', 'p-status');
+        toDoStatus.innerHTML = toDoList[i].status;
+
         todoSection.appendChild(toDoParagraph);
         todoSection.appendChild(toDoDate);
+        todoSection.appendChild(toDoStatus);
 
         if (toDoList[i].priority === 'High') {
           const toDoSectionPrority = document.createElement('p');
@@ -66,6 +72,14 @@ const toDoPage = (name, value) => {
           toDoSectionPrority.innerHTML = toDoList[i].priority;
           todoSection.appendChild(toDoSectionPrority);
         }
+
+        const statusParagraph = document.createElement('p')
+
+
+        const statusButton = document.createElement('button')
+        statusButton.innerHTML = 'Change Status'
+        statusButton.setAttribute('class', 'btn btn-info');
+        todoSection.appendChild(statusButton)
 
         const toDoObject = toDoList[i];
 
@@ -136,7 +150,25 @@ const toDoPage = (name, value) => {
     priorityTitle.setAttribute('class', 'nameTxt');
     priorityTitle.innerHTML = 'Priority';
 
-    toDoForm.appendChild(priorityTitle);
+
+    const statusTitle = document.createElement('label');
+    statusTitle.setAttribute('class', 'nameTxt');
+    statusTitle.innerHTML = 'Status';
+
+
+    const optionStatus = document.createElement('select');
+    optionStatus.setAttribute('class', 'description-class');
+    optionStatus.setAttribute('id', 'status-id');
+
+    const statusComplete = document.createElement('option');
+    statusComplete.setAttribute('value', '1');
+
+    optionStatus.appendChild(statusComplete);
+    statusComplete.innerHTML = 'complete';
+    const statusPending = document.createElement('option');
+    statusPending.setAttribute('value', '2');
+    optionStatus.appendChild(statusPending);
+    statusPending.innerHTML = 'Pending';
 
     const priority = document.createElement('select');
     priority.setAttribute('class', 'description-class');
@@ -154,7 +186,11 @@ const toDoPage = (name, value) => {
     priority.appendChild(priorityOptionThree);
     priorityOptionThree.innerHTML = 'Low';
 
+    toDoForm.appendChild(statusTitle);
+    toDoForm.appendChild(optionStatus);
+    toDoForm.appendChild(priorityTitle);
     toDoForm.appendChild(priority);
+
 
     const submitToDoButton = document.createElement('button');
     submitToDoButton.setAttribute('class', 'btn btn-success todo-project-button hide-submit-button mt-2');
@@ -200,10 +236,12 @@ const toDoPage = (name, value) => {
     const toDoDescription = document.getElementById('description-id').value;
     const toDoDueDate = document.getElementById('dueDate-id').value;
     const toDoPriority = document.getElementById('priority-id');
+    const toDoStatus = document.getElementById('status-id');
 
     const userPriority = toDoPriority.options[toDoPriority.selectedIndex].text;
+    const userStatus = toDoStatus.options[toDoStatus.selectedIndex].text;
 
-    const toDoConstructorInstance = new ToDoConstructor(toDoTitle, toDoDescription, toDoDueDate, userPriority, value);
+    const toDoConstructorInstance = new ToDoConstructor(toDoTitle, toDoDescription, toDoDueDate, userPriority, value, userStatus);
 
     toDoList.push(toDoConstructorInstance);
 

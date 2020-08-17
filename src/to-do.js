@@ -113,7 +113,7 @@ const toDoPage = () => {
         editIcon.setAttribute('class', 'fas fa-edit');
 
         editIcon.addEventListener('click', () => {
-          todoLogicInstance.editToDo(toDoList.indexOf(toDoObject));
+          todoLogicInstance.editToDo(toDoList.indexOf(toDoObject), name, value);
         });
 
         const deleteIcon = document.createElement('i');
@@ -145,7 +145,7 @@ const toDoPage = () => {
   }
 
 
-  const displayToDoForm = (name, value) => {
+  const displayToDoForm = (name, value, x) => {
 
     const toDoForm = document.createElement('div');
     toDoForm.setAttribute('class', 'card project-module');
@@ -235,7 +235,7 @@ const toDoPage = () => {
     document.querySelector('.all-content').appendChild(toDoForm);
 
     submitToDoButton.addEventListener('click', () => {
-      if (toDoList.indexOf(toDoList[name]) !== -1) {
+      if (toDoList.indexOf(toDoList[x]) !== -1) {
         const newtoDoTitle = document.getElementById('title-id').value;
         const newtoDoDescription = document.getElementById('description-id').value;
         const newtoDoDueDate = document.getElementById('dueDate-id').value;
@@ -244,10 +244,10 @@ const toDoPage = () => {
         const newUserPriority = newtoDoPriority.options[newtoDoPriority.selectedIndex].text;
 
         if (newtoDoTitle && newtoDoDescription && newtoDoDueDate) {
-          toDoList[name].title = newtoDoTitle;
-          toDoList[name].description = newtoDoDescription;
-          toDoList[name].duedate = newtoDoDueDate;
-          toDoList[name].priority = newUserPriority;
+          toDoList[x].title = newtoDoTitle;
+          toDoList[x].description = newtoDoDescription;
+          toDoList[x].duedate = newtoDoDueDate;
+          toDoList[x].priority = newUserPriority;
         }
 
         saveData(toDoList);

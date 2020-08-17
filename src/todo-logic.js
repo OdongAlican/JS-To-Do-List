@@ -27,8 +27,9 @@ const createToDoList = (name, value) => {
   testMethodInstance.testMethod(name, value)
 };
 
-const editToDo = (x) => {
-  displayToDoForm(x);
+const editToDo = (x,name, value,) => {
+  const displayToDoFormInstance = toDoPage()
+  displayToDoFormInstance.displayToDoForm(name, value, x);
 
   document.getElementById('title-id').value = toDoList[x].title;
   document.getElementById('description-id').value = toDoList[x].description;

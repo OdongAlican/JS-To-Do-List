@@ -82,7 +82,7 @@ const toDoPage = () => {
         todoSection.appendChild(statusButton);
 
         statusButton.addEventListener('click', () => {
-          todoLogicInstance.changeStatus(i, name, value)
+          todoLogicInstance.changeStatus(i, name, value);
         });
 
         const toDoObject = toDoList[i];

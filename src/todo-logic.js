@@ -44,7 +44,6 @@ const todoLogic = () => {
   };
 
   const changeStatus = (i, name, value) => {
-              
     if (toDoList[i].status === 'Complete') {
       toDoList[i].status = 'Pending';
       saveData(toDoList);
@@ -53,9 +52,6 @@ const todoLogic = () => {
 
       const testMethodInstance = toDoPage();
       testMethodInstance.testMethod(name, value);
-      console.log('from another section')
-
-
     } else if (toDoList[i].status === 'Pending') {
       toDoList[i].status = 'Complete';
 
@@ -65,11 +61,12 @@ const todoLogic = () => {
 
       const testMethodInstance = toDoPage();
       testMethodInstance.testMethod(name, value);
-      console.log('from another section now')
     }
-  }
+  };
 
-  return { createToDoList, editToDo, deleteToDo, changeStatus };
+  return {
+    createToDoList, editToDo, deleteToDo, changeStatus,
+  };
 };
 
 export default todoLogic;

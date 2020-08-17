@@ -82,28 +82,7 @@ const toDoPage = () => {
         todoSection.appendChild(statusButton);
 
         statusButton.addEventListener('click', () => {
-          if (toDoList[i].status === 'Complete') {
-            toDoList[i].status = 'Pending';
-            saveData(toDoList);
-
-            localStorage['todo-library-data'] = JSON.stringify(toDoList);
-
-            const allContent = document.querySelector('.all-content');
-            allContent.innerHTML = '';
-            navBar();
-            allContent.appendChild(displayToDo(name, value));
-          } else if (toDoList[i].status === 'Pending') {
-            toDoList[i].status = 'Complete';
-
-            saveData(toDoList);
-
-            localStorage['todo-library-data'] = JSON.stringify(toDoList);
-
-            const allContent = document.querySelector('.all-content');
-            allContent.innerHTML = '';
-            navBar();
-            allContent.appendChild(displayToDo(name, value));
-          }
+          todoLogicInstance.changeStatus(i, name, value)
         });
 
         const toDoObject = toDoList[i];

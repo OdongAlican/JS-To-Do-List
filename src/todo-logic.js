@@ -43,7 +43,33 @@ const todoLogic = () => {
     testMethodInstance.testMethod(name, value);
   };
 
-  return { createToDoList, editToDo, deleteToDo };
+  const changeStatus = (i, name, value) => {
+              
+    if (toDoList[i].status === 'Complete') {
+      toDoList[i].status = 'Pending';
+      saveData(toDoList);
+
+      localStorage['todo-library-data'] = JSON.stringify(toDoList);
+
+      const testMethodInstance = toDoPage();
+      testMethodInstance.testMethod(name, value);
+      console.log('from another section')
+
+
+    } else if (toDoList[i].status === 'Pending') {
+      toDoList[i].status = 'Complete';
+
+      saveData(toDoList);
+
+      localStorage['todo-library-data'] = JSON.stringify(toDoList);
+
+      const testMethodInstance = toDoPage();
+      testMethodInstance.testMethod(name, value);
+      console.log('from another section now')
+    }
+  }
+
+  return { createToDoList, editToDo, deleteToDo, changeStatus };
 };
 
 export default todoLogic;

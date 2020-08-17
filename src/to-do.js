@@ -120,7 +120,7 @@ const toDoPage = () => {
         deleteIcon.setAttribute('class', 'fas fa-trash-alt');
 
         deleteIcon.addEventListener('click', () => {
-          todoLogicInstance.deleteToDo(toDoList.indexOf(toDoObject));
+          todoLogicInstance.deleteToDo(toDoList.indexOf(toDoObject), name, value);
         });
 
         todoSection.appendChild(editIcon);

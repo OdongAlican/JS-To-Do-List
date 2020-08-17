@@ -4,7 +4,7 @@ import { saveData, ToDoConstructor, toDoList, toDoPage } from './to-do';
 const todoLogic = () => {
 
 const createToDoList = (name, value) => {
-  
+
   const toDoTitle = document.getElementById('title-id').value;
   const toDoDescription = document.getElementById('description-id').value;
   const toDoDueDate = document.getElementById('dueDate-id').value;
@@ -35,11 +35,12 @@ const editToDo = (x) => {
   document.getElementById('dueDate-id').value = toDoList[x].duedate;
 };
 
-const deleteToDo = (identity) => {
+const deleteToDo = (identity, name, value) => {
   toDoList.splice(identity, 1);
   localStorage['todo-library-data'] = JSON.stringify(toDoList);
 
-   testMethodInstance.testMethod()
+   const testMethodInstance = toDoPage()
+   testMethodInstance.testMethod(name, value)
 
 }
 

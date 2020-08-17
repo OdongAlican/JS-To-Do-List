@@ -1,6 +1,11 @@
-import toDoPage from './to-do';
+import { toDoPage }from './to-do';
 
-const projectList = JSON.parse(localStorage.getItem('project-library-data')) || [];
+const projectList = JSON.parse(localStorage.getItem('project-library-data')) || [
+  {
+    name: 'First Project',
+    value: '1'
+  }
+];
 
 const saveData = (arr) => {
   localStorage.setItem('project-library-data', JSON.stringify(arr));

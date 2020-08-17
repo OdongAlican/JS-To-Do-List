@@ -1,3 +1,6 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-use-before-define */
+
 import navBar from './navbar';
 import todoLogic from './todo-logic';
 

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+
 import {
   saveData, ToDoConstructor, toDoList, toDoPage,
 } from './to-do';
@@ -15,7 +17,8 @@ const todoLogic = () => {
     const userStatus = toDoStatus.options[toDoStatus.selectedIndex].text;
 
     if (toDoTitle && toDoDescription && toDoDueDate) {
-      const toDoConstructorInstance = new ToDoConstructor(toDoTitle, toDoDescription, toDoDueDate, userPriority, value, userStatus);
+      const toDoConstructorInstance = new ToDoConstructor(toDoTitle, toDoDescription, toDoDueDate,
+        userPriority, value, userStatus);
       toDoList.push(toDoConstructorInstance);
     }
 

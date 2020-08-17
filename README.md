@@ -13,9 +13,9 @@ Learning the concepts of Single Responsibility and Tightly Coupled Objects in Ja
 
 [live link](https://rawcdn.githack.com/OdongAlican/JS-To-Do-List/3a86b65dc66bbd7be54e098d4dd2f6db1ce57300/dist/index.html)
 
-![Landing page](1.png)
-![To-Do page](2.png)
-![Add To-Do Form](3.png)
+![Landing page](images/1.png)
+![To-Do page](images/2.png)
+![Add To-Do Form](images/3.png)
 
 ### Prerequisites
 
@@ -28,9 +28,13 @@ Learning the concepts of Single Responsibility and Tightly Coupled Objects in Ja
 
 ### Install
 
-- No istallation required.
+- Ensure that you have node.js and npm installed in your machine.
+- Run `npm install`to install the project packages
 
+### Usage section.
 
+- Run `npm run dev`to bundle the packages for development. Dev is created for development, meaning that it supports hot module replacement, dev server, and a lot of things that assist your dev work
+- Run `npm run build` when you want to deploy the project for production.
 ## Authors
 
 👤 **Rahma Halane**

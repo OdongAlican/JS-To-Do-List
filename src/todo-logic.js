@@ -1,8 +1,10 @@
 import navBar from './navbar';
 import { saveData, ToDoConstructor, toDoList, toDoPage } from './to-do';
 
-const todoLogic = (name, value) => {
-const createToDoList = () => {
+const todoLogic = () => {
+
+const createToDoList = (name, value) => {
+  
   const toDoTitle = document.getElementById('title-id').value;
   const toDoDescription = document.getElementById('description-id').value;
   const toDoDueDate = document.getElementById('dueDate-id').value;
@@ -21,9 +23,8 @@ const createToDoList = () => {
   saveData(toDoList);
 
   localStorage['todo-library-data'] = JSON.stringify(toDoList);
-   const testMethodInstance = toDoPage()
-    testMethodInstance.testMethod(name, value)
-
+  const testMethodInstance = toDoPage()
+  testMethodInstance.testMethod(name, value)
 };
 
 const editToDo = (x) => {

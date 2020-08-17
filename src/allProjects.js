@@ -41,8 +41,8 @@ const allProjects = () => {
       projectSection.appendChild(detailsProjectButton);
 
       detailsProjectButton.addEventListener('click', () => {
-        const toDoPageInstance = toDoPage(projectList[i].name, projectList[i].value);
-        toDoPageInstance.displayToDo();
+        const toDoPageInstance = toDoPage();
+        toDoPageInstance.displayToDo(projectList[i].name, projectList[i].value);
         document.querySelector('.all-projects').classList.add('hide-all-project');
       });
     }

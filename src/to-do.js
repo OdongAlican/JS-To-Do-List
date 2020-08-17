@@ -16,9 +16,11 @@ function ToDoConstructor(title, description, duedate, priority, projectId, statu
   this.status = status;
 }
 
-const toDoPage = (name, value) => {
-  const todoLogicInstance = todoLogic(name, value)
-  const displayToDo = () => {
+const toDoPage = () => {
+
+  const todoLogicInstance = todoLogic()
+
+  const displayToDo = (name, value) => {
     const toDoDiv = document.createElement('div');
     toDoDiv.setAttribute('class', 'main-todo-div');
 
@@ -83,8 +85,6 @@ const toDoPage = (name, value) => {
         statusButton.addEventListener('click', () => {
           if (toDoList[i].status === 'Complete') {
             toDoList[i].status = 'Pending';
-
-
             saveData(toDoList);
 
             localStorage['todo-library-data'] = JSON.stringify(toDoList);
@@ -132,22 +132,21 @@ const toDoPage = (name, value) => {
       }
     }
 
-
     addToDoButton.addEventListener('click', () => {
       displayToDoForm(name, value);
     });
   };
 
-  const testMethod = (name, value) => {
-
+  const testMethod = (name,value) => {
     const allContent = document.querySelector('.all-content');
     allContent.innerHTML = '';
     navBar();
-    allContent.appendChild(displayToDo(name, value));
+    allContent.appendChild(displayToDo(name,value));
   }
 
 
   const displayToDoForm = (name, value) => {
+
     const toDoForm = document.createElement('div');
     toDoForm.setAttribute('class', 'card project-module');
     toDoForm.setAttribute('id', 'todoDoForm');
@@ -262,7 +261,7 @@ const toDoPage = (name, value) => {
       } else {
         document.getElementById('todoDoForm').classList.add('hide-toDo-form-first');
         document.querySelector('.main-todo-div').classList.add('hide-toDo-form-first');
-        todoLogicInstance.createToDoList();
+        todoLogicInstance.createToDoList(name,value);
       }
     });
   };
